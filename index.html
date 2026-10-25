@@ -19,7 +19,7 @@
     <header class="border-b gold-border bg-stone-950/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3 cursor-pointer" onclick="showHome()">
-                <img src="logo.png" class="w-10 h-10 rounded-full border gold-border object-cover shadow-md shadow-amber-900/20" alt="Oasys Logo">
+                <img src="logo.png?v=2" class="w-10 h-10 rounded-full border gold-border object-cover shadow-md shadow-amber-900/20" alt="Oasys Logo">
                 <div>
                     <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-wider gold-gradient">OASYS PARFUMS</h1>
                     <p class="text-xs text-stone-400 tracking-widest uppercase">Tu refugio de fragancias exclusivas</p>
@@ -36,7 +36,7 @@
         <div id="view-home" class="space-y-12">
             <div class="text-center max-w-2xl mx-auto space-y-6 py-8">
                 <div class="inline-block p-1 rounded-full border gold-border bg-stone-900/50 shadow-2xl shadow-amber-900/30 mb-2">
-                    <img src="logo.png" class="w-32 h-32 rounded-full object-cover mx-auto" alt="Oasys Logo">
+                    <img src="logo.png?v=2" class="w-32 h-32 rounded-full object-cover mx-auto" alt="Oasys Logo">
                 </div>
                 <div>
                     <span class="text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border gold-border">Alta Perfumería</span>
@@ -150,9 +150,9 @@
     </div>
 
     <script>
-        if (localStorage.getItem('oasis_version') !== 'v10') {
+        if (localStorage.getItem('oasis_version') !== 'v11') {
             localStorage.removeItem('oasis_products');
-            localStorage.setItem('oasis_version', 'v10');
+            localStorage.setItem('oasis_version', 'v11');
         }
 
         let initialProducts = [
