@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OASIS PARFUMS | Catálogo Exclusivo</title>
+    <title>OASYS PARFUMS | Catálogo Exclusivo</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -18,9 +18,12 @@
 <body class="min-h-screen flex flex-col selection:bg-amber-500 selection:text-black">
     <header class="border-b gold-border bg-stone-950/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="cursor-pointer" onclick="showHome()">
-                <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-wider gold-gradient">OASIS PARFUMS</h1>
-                <p class="text-xs text-stone-400 tracking-widest uppercase">Tu refugio de fragancias exclusivas</p>
+            <div class="flex items-center gap-3 cursor-pointer" onclick="showHome()">
+                <img src="https://images.unsplash.com/photo-1615397349754-cfa2066a298e?q=80&w=200&auto=format&fit=crop" class="w-10 h-10 rounded-full border gold-border object-cover shadow-md shadow-amber-900/20" alt="Oasys Logo">
+                <div>
+                    <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-wider gold-gradient">OASYS PARFUMS</h1>
+                    <p class="text-xs text-stone-400 tracking-widest uppercase">Tu refugio de fragancias exclusivas</p>
+                </div>
             </div>
             <div class="flex items-center gap-3">
                 <button onclick="openAdmin()" class="text-xs uppercase tracking-wider px-3 py-1.5 rounded border gold-border text-amber-400 hover:bg-amber-500/10 transition">⚙️ Admin</button>
@@ -31,10 +34,15 @@
     <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full">
         <!-- VISTA HOME -->
         <div id="view-home" class="space-y-12">
-            <div class="text-center max-w-2xl mx-auto space-y-4 py-8">
-                <span class="text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border gold-border">Alta Perfumería</span>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold">Descubrí la esencia del lujo</h2>
-                <p class="text-stone-400 text-sm md:text-base">Seleccioná una categoría para explorar nuestro catálogo exclusivo de fragancias de diseñador y árabes.</p>
+            <div class="text-center max-w-2xl mx-auto space-y-6 py-8">
+                <div class="inline-block p-1 rounded-full border gold-border bg-stone-900/50 shadow-2xl shadow-amber-900/30 mb-2">
+                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=400&auto=format&fit=crop" class="w-24 h-24 rounded-full object-cover mx-auto" alt="Logo Monograma">
+                </div>
+                <div>
+                    <span class="text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border gold-border">Alta Perfumería</span>
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold mt-3">Descubrí la esencia del lujo</h2>
+                    <p class="text-stone-400 text-sm md:text-base mt-2">Seleccioná una categoría para explorar nuestro catálogo exclusivo de fragancias de diseñador y árabes.</p>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -102,7 +110,7 @@
             <form id="admin-form" onsubmit="saveProduct(event)" class="space-y-4">
                 <input type="hidden" id="edit-id">
                 <div>
-                    <label class="block text-xs uppercase tracking-wider text-stone-400 mb-1">Nombre (Ej: ACQUA DI GIO PROFONDO)</label>
+                    <label class="block text-xs uppercase tracking-wider text-stone-400 mb-1">Nombre</label>
                     <input type="text" id="form-name" required class="w-full bg-stone-950 border gold-border rounded-lg p-2.5 text-sm text-white">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
@@ -142,23 +150,28 @@
     </div>
 
     <script>
+        if (localStorage.getItem('oasis_version') !== 'v3') {
+            localStorage.removeItem('oasis_products');
+            localStorage.setItem('oasis_version', 'v3');
+        }
+
         let initialProducts = [
-            { id: 1, name: "ACQUA DI GIO PROFONDO", brand: "ARMANI", category: "diseñador", gender: "Masculino", vol: "100ml PARFUM", notes: "Notas Marinas, Mandarina verde, Romero, Ciprés, Pachulí.", duration: "9/10", sillage: "Alta" },
-            { id: 2, name: "ONE MILLION", brand: "PACO RABANNE", category: "diseñador", gender: "Masculino", vol: "100ml EDT", notes: "Mandarina roja, Menta, Canela, Rosa, Cuero, Ámbar.", duration: "8/10", sillage: "Alta" },
-            { id: 3, name: "SAUVAGE", brand: "DIOR", category: "diseñador", gender: "Masculino", vol: "60ml EDP", notes: "Bergamota de Calabria, Pimienta de Sichuan, Ambroxan, Vainilla.", duration: "10/10", sillage: "Enorme" },
-            { id: 4, name: "EROS", brand: "VERSACE", category: "diseñador", gender: "Masculino", vol: "100ml EDP", notes: "Menta, Manzana verde, Limón, Haba tonka, Geranio, Vainilla.", duration: "9/10", sillage: "Alta" },
-            { id: 5, name: "L'EAU POUR HOMME", brand: "KENZO", category: "diseñador", gender: "Masculino", vol: "100ml EDT", notes: "Yuzu, Limón, Notas verdes, Lotus, Pimienta blanca, Almizcle.", duration: "7/10", sillage: "Moderada" },
-            { id: 6, name: "212 SEXY", brand: "CAROLINA HERRERA", category: "diseñador", gender: "Femenino", vol: "100ml EDP", notes: "Pimienta rosa, Mandarina, Bergamota, Gardenia, Algodón de azúcar, Vainilla.", duration: "8/10", sillage: "Alta" },
-            { id: 7, name: "GOOD GIRL", brand: "CAROLINA HERRERA", category: "diseñador", gender: "Femenino", vol: "80ml EDP", notes: "Almendra, Café, Jazmín sambac, Nardos, Cacao, Haba tonka.", duration: "9/10", sillage: "Alta" },
-            { id: 8, name: "CLUB DE NUIT URBAN MAN ELIXIR", brand: "ARMAF", category: "árabe", gender: "Masculino", vol: "105ml EDP", notes: "Bergamota, Pimienta rosa, Jazmín, Pachulí, Cedro, Ambroxan.", duration: "10/10", sillage: "Enorme" },
-            { id: 9, name: "ODYSSEY MANDARIN SKY", brand: "ARMAF", category: "árabe", gender: "Masculino", vol: "100ml EDP", notes: "Mandarina, Azafrán, Salvia, Caramelo, Haba tonka, Vetiver.", duration: "9/10", sillage: "Alta" },
-            { id: 10, name: "ASAD ELIXIR", brand: "LATTAFA", category: "árabe", gender: "Masculino", vol: "100ml EDP", notes: "Pimienta negra, Tabaco, Piña, Café, Pachulí, Vainilla, Ámbar.", duration: "10/10", sillage: "Enorme" },
-            { id: 11, name: "KHAMRAH QAHWA", brand: "LATTAFA", category: "árabe", gender: "Unisex", vol: "100ml EDP", notes: "Canela, Cardamomo, Jengibre, Café, Praliné, Vainilla, Haba tonka.", duration: "10/10", sillage: "Enorme" },
-            { id: 12, name: "HAWAS VERDE", brand: "RASASI", category: "árabe", gender: "Masculino", vol: "100ml EDP", notes: "Manzana, Bergamota, Notas acuáticas, Ciruela, Flor de azahar, Almizcle.", duration: "9/10", sillage: "Alta" },
-            { id: 13, name: "HAWAS ICE", brand: "RASASI", category: "árabe", gender: "Masculino", vol: "100ml EDP", notes: "Manzana, Limón italiano, Bergamota, Flor de azahar, Cardamomo, Almizcle.", duration: "10/10", sillage: "Enorme" },
-            { id: 14, name: "CLUB DE NUIT ICONIC (BLUE)", brand: "ARMAF", category: "árabe", gender: "Masculino", vol: "105ml EDP", notes: "Pomelo, Limón, Menta, Pimienta rosa, Jengibre, Incienso, Cedro.", duration: "9/10", sillage: "Alta" },
-            { id: 15, name: "CLUB DE NUIT MALEKA", brand: "ARMAF", category: "árabe", gender: "Femenino", vol: "105ml EDP", notes: "Bergamota, Frutas rojas, Rosa, Jazmín, Vainilla, Almizcle blanco.", duration: "8/10", sillage: "Alta" },
-            { id: 16, name: "NEBRAS ELIXIR", brand: "LATTAFA PRIDE", category: "árabe", gender: "Femenino", vol: "100ml EDP", notes: "Bayas rojas, Mandarina, Cacao, Vainilla, Azúcar, Almizcle, Ámbar.", duration: "10/10", sillage: "Enorme" }
+            { id: 1, name: "ARMANI ACQUA DI GIO PROFONDO", brand: "ARMANI", category: "diseñador", gender: "Masculino", vol: "100ML PARFUM", notes: "Notas Marinas, Mandarina verde, Romero, Ciprés, Pachulí.", duration: "9/10", sillage: "Alta" },
+            { id: 2, name: "ONE MILLION", brand: "PACO RABANNE", category: "diseñador", gender: "Masculino", vol: "100ML EDT", notes: "Mandarina roja, Menta, Canela, Rosa, Cuero, Ámbar.", duration: "8/10", sillage: "Alta" },
+            { id: 3, name: "SAUVAGE", brand: "DIOR", category: "diseñador", gender: "Masculino", vol: "60ML EDP", notes: "Bergamota de Calabria, Pimienta de Sichuan, Ambroxan, Vainilla.", duration: "10/10", sillage: "Enorme" },
+            { id: 4, name: "EROS", brand: "VERSACE", category: "diseñador", gender: "Masculino", vol: "100ML EDP", notes: "Menta, Manzana verde, Limón, Haba tonka, Geranio, Vainilla.", duration: "9/10", sillage: "Alta" },
+            { id: 5, name: "L'EAU POUR HOMME", brand: "KENZO", category: "diseñador", gender: "Masculino", vol: "100ML EDT", notes: "Yuzu, Limón, Notas verdes, Lotus, Pimienta blanca, Almizcle.", duration: "7/10", sillage: "Moderada" },
+            { id: 6, name: "212 SEXY", brand: "CAROLINA HERRERA", category: "diseñador", gender: "Femenino", vol: "100ML EDP", notes: "Pimienta rosa, Mandarina, Bergamota, Gardenia, Algodón de azúcar, Vainilla.", duration: "8/10", sillage: "Alta" },
+            { id: 7, name: "GOOD GIRL", brand: "CAROLINA HERRERA", category: "diseñador", gender: "Femenino", vol: "80ML EDP", notes: "Almendra, Café, Jazmín sambac, Nardos, Cacao, Haba tonka.", duration: "9/10", sillage: "Alta" },
+            { id: 8, name: "CLUB DE NUIT URBAN MAN ELIXIR", brand: "ARMAF", category: "árabe", gender: "Masculino", vol: "105ML EDP", notes: "Bergamota, Pimienta rosa, Jazmín, Pachulí, Cedro, Ambroxan.", duration: "10/10", sillage: "Enorme" },
+            { id: 9, name: "ODYSSEY MANDARIN SKY", brand: "ARMAF", category: "árabe", gender: "Masculino", vol: "100ML EDP", notes: "Mandarina, Azafrán, Salvia, Caramelo, Haba tonka, Vetiver.", duration: "9/10", sillage: "Alta" },
+            { id: 10, name: "ASAD ELIXIR", brand: "LATTAFA", category: "árabe", gender: "Masculino", vol: "100ML EDP", notes: "Pimienta negra, Tabaco, Piña, Café, Pachulí, Vainilla, Ámbar.", duration: "10/10", sillage: "Enorme" },
+            { id: 11, name: "KHAMRAH QAHWA", brand: "LATTAFA", category: "árabe", gender: "Unisex", vol: "100ML EDP", notes: "Canela, Cardamomo, Jengibre, Café, Praliné, Vainilla, Haba tonka.", duration: "10/10", sillage: "Enorme" },
+            { id: 12, name: "HAWAS VERDE", brand: "RASASI", category: "árabe", gender: "Masculino", vol: "100ML EDP", notes: "Manzana, Bergamota, Notas acuáticas, Ciruela, Flor de azahar, Almizcle.", duration: "9/10", sillage: "Alta" },
+            { id: 13, name: "HAWAS ICE", brand: "RASASI", category: "árabe", gender: "Masculino", vol: "100ML EDP", notes: "Manzana, Limón italiano, Bergamota, Flor de azahar, Cardamomo, Almizcle.", duration: "10/10", sillage: "Enorme" },
+            { id: 14, name: "CLUB DE NUIT ICONIC (BLUE)", brand: "ARMAF", category: "árabe", gender: "Masculino", vol: "105ML EDP", notes: "Pomelo, Limón, Menta, Pimienta rosa, Jengibre, Incienso, Cedro.", duration: "9/10", sillage: "Alta" },
+            { id: 15, name: "CLUB DE NUIT MALEKA", brand: "ARMAF", category: "árabe", gender: "Femenino", vol: "105ML EDP", notes: "Bergamota, Frutas rojas, Rosa, Jazmín, Vainilla, Almizcle blanco.", duration: "8/10", sillage: "Alta" },
+            { id: 16, name: "NEBRAS ELIXIR", brand: "LATTAFA PRIDE", category: "árabe", gender: "Femenino", vol: "100ML EDP", notes: "Bayas rojas, Mandarina, Cacao, Vainilla, Azúcar, Almizcle, Ámbar.", duration: "10/10", sillage: "Enorme" }
         ];
 
         let products = JSON.parse(localStorage.getItem('oasis_products')) || initialProducts;
@@ -286,7 +299,7 @@
                 brand: document.getElementById('form-brand').value.toUpperCase(),
                 category: document.getElementById('form-category').value,
                 gender: document.getElementById('form-gender').value,
-                vol: document.getElementById('form-vol').value,
+                vol: document.getElementById('form-vol').value.toUpperCase(),
                 notes: "Notas aromáticas seleccionadas.",
                 duration: "8/10",
                 sillage: "Alta"
