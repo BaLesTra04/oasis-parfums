@@ -19,7 +19,9 @@
     <header class="border-b gold-border bg-stone-950/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3 cursor-pointer" onclick="showHome()">
-                <img src="logo.jpg" class="w-10 h-10 rounded-full border gold-border object-cover shadow-md shadow-amber-900/20" alt="Oasys Logo">
+                <div class="w-10 h-10 rounded-full border gold-border overflow-hidden flex items-center justify-center bg-black shadow-md shadow-amber-900/20">
+                    <span class="font-serif font-bold text-amber-400 text-sm">AP</span>
+                </div>
                 <div>
                     <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-wider gold-gradient">OASYS PARFUMS</h1>
                     <p class="text-xs text-stone-400 tracking-widest uppercase">Tu refugio de fragancias exclusivas</p>
@@ -35,8 +37,8 @@
         <!-- VISTA HOME -->
         <div id="view-home" class="space-y-12">
             <div class="text-center max-w-2xl mx-auto space-y-6 py-8">
-                <div class="inline-block p-1 rounded-full border gold-border bg-stone-900/50 shadow-2xl shadow-amber-900/30 mb-2">
-                    <img src="logo.jpg" class="w-28 h-28 rounded-full object-cover mx-auto" alt="Logo Oasys">
+                <div class="inline-flex items-center justify-center w-28 h-28 rounded-full border-2 gold-border bg-black shadow-2xl shadow-amber-900/40 mb-2">
+                    <span class="font-serif font-bold text-4xl gold-gradient tracking-widest">AP</span>
                 </div>
                 <div>
                     <span class="text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border gold-border">Alta Perfumería</span>
@@ -48,7 +50,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 <div onclick="selectCategory('diseñador')" class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer border gold-border transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-900/20">
                     <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-60" alt="Diseñador">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-60" alt="Diseñador">
                     <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end space-y-2">
                         <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">Categoría I</span>
                         <h3 class="font-serif text-3xl font-bold text-white group-hover:text-amber-300 transition">Diseñador</h3>
@@ -58,7 +60,7 @@
 
                 <div onclick="selectCategory('árabe')" class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer border gold-border transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-900/20">
                     <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1615397349754-cfa2066a298e?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-60" alt="Árabe">
+                    <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-60" alt="Árabe">
                     <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end space-y-2">
                         <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">Categoría II</span>
                         <h3 class="font-serif text-3xl font-bold text-white group-hover:text-amber-300 transition">Árabe</h3>
@@ -150,9 +152,9 @@
     </div>
 
     <script>
-        if (localStorage.getItem('oasis_version') !== 'v4') {
+        if (localStorage.getItem('oasis_version') !== 'v6') {
             localStorage.removeItem('oasis_products');
-            localStorage.setItem('oasis_version', 'v4');
+            localStorage.setItem('oasis_version', 'v6');
         }
 
         let initialProducts = [
@@ -176,3 +178,152 @@
 
         let products = JSON.parse(localStorage.getItem('oasis_products')) || initialProducts;
         let currentCategory = 'diseñador';
+
+        function saveToStorage() {
+            localStorage.setItem('oasis_products', JSON.stringify(products));
+        }
+
+        function showHome() {
+            document.getElementById('view-home').classList.remove('hidden');
+            document.getElementById('view-catalog').classList.add('hidden');
+        }
+
+        function selectCategory(cat) {
+            currentCategory = cat;
+            document.getElementById('view-home').classList.add('hidden');
+            document.getElementById('view-catalog').classList.remove('hidden');
+            document.getElementById('catalog-title').innerText = `Perfumes de ${cat}`;
+            document.getElementById('search-input').value = '';
+            document.getElementById('filter-gender').value = 'todos';
+            renderProducts();
+        }
+
+        function filterProducts() {
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            const search = document.getElementById('search-input').value.toLowerCase();
+            const gender = document.getElementById('filter-gender').value;
+
+            const filtered = products.filter(p => {
+                const matchCat = p.category === currentCategory;
+                const matchSearch = p.name.toLowerCase().includes(search) || p.brand.toLowerCase().includes(search);
+                const matchGender = gender === 'todos' || p.gender === gender;
+                return matchCat && matchSearch && matchGender;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center text-stone-500 py-12">No se encontraron perfumes con estos filtros.</p>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="bg-stone-900 border gold-border rounded-xl p-6 flex flex-col justify-between space-y-4 hover:border-amber-400 transition">
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">${p.brand}</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-stone-800 text-stone-300 border gold-border">${p.gender}</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white">${p.name}</h3>
+                        <p class="text-xs text-stone-400">${p.vol}</p>
+                    </div>
+                    <button onclick="openModal(${p.id})" class="w-full py-2.5 rounded-lg border gold-border text-amber-400 hover:bg-amber-500 hover:text-black font-semibold text-xs uppercase tracking-wider transition">Ver Ficha Olfativa</button>
+                </div>
+            `).join('');
+        }
+
+        function openModal(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+            
+            const content = document.getElementById('modal-content');
+            content.innerHTML = `
+                <div class="space-y-4">
+                    <div class="border-b gold-border pb-3">
+                        <span class="text-xs uppercase tracking-widest text-amber-400">${p.brand} • ${p.gender}</span>
+                        <h3 class="font-serif text-2xl font-bold text-white">${p.name}</h3>
+                        <p class="text-xs text-stone-400">${p.vol}</p>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-xs uppercase tracking-wider text-amber-400 font-semibold">Pirámide de Notas</h4>
+                        <p class="text-sm text-stone-200 bg-stone-950 p-3 rounded-lg border gold-border">${p.notes}</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 pt-2">
+                        <div class="bg-stone-950 p-3 rounded-lg border gold-border">
+                            <span class="block text-xs text-stone-400 uppercase">Duración</span>
+                            <span class="font-bold text-amber-400">${p.duration}</span>
+                        </div>
+                        <div class="bg-stone-950 p-3 rounded-lg border gold-border">
+                            <span class="block text-xs text-stone-400 uppercase">Proyección</span>
+                            <span class="font-bold text-amber-400">${p.sillage}</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/?text=Hola!%20Quiero%20consultar%20por%20el%20perfume%20${encodeURIComponent(p.brand + ' ' + p.name + ' ' + p.vol)}" target="_blank" class="block w-full text-center py-3 rounded-lg gold-bg text-black font-bold uppercase text-xs tracking-wider transition">Consultar por WhatsApp</a>
+                </div>
+            `;
+            document.getElementById('modal-product').classList.remove('hidden');
+            document.getElementById('modal-product').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-product').classList.add('hidden');
+            document.getElementById('modal-product').classList.remove('flex');
+        }
+
+        function openAdmin() {
+            renderAdminList();
+            document.getElementById('modal-admin').classList.remove('hidden');
+            document.getElementById('modal-admin').classList.add('flex');
+        }
+
+        function closeAdmin() {
+            document.getElementById('modal-admin').classList.add('hidden');
+            document.getElementById('modal-admin').classList.remove('flex');
+        }
+
+        function renderAdminList() {
+            const list = document.getElementById('admin-list');
+            list.innerHTML = products.map(p => `
+                <div class="flex justify-between items-center bg-stone-950 p-2 rounded border gold-border text-xs">
+                    <span class="truncate pr-2">${p.brand} - ${p.name}</span>
+                    <button onclick="deleteProduct(${p.id})" class="text-red-400 hover:text-red-300 px-2 py-1">Eliminar</button>
+                </div>
+            `).join('');
+        }
+
+        function saveProduct(e) {
+            e.preventDefault();
+            const newP = {
+                id: Date.now(),
+                name: document.getElementById('form-name').value.toUpperCase(),
+                brand: document.getElementById('form-brand').value.toUpperCase(),
+                category: document.getElementById('form-category').value,
+                gender: document.getElementById('form-gender').value,
+                vol: document.getElementById('form-vol').value.toUpperCase(),
+                notes: "Notas aromáticas seleccionadas.",
+                duration: "8/10",
+                sillage: "Alta"
+            };
+            products.push(newP);
+            saveToStorage();
+            document.getElementById('admin-form').reset();
+            renderAdminList();
+            if(!document.getElementById('view-catalog').classList.contains('hidden')) {
+                renderProducts();
+            }
+            alert('¡Perfume agregado con éxito!');
+        }
+
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            saveToStorage();
+            renderAdminList();
+            if(!document.getElementById('view-catalog').classList.contains('hidden')) {
+                renderProducts();
+            }
+        }
+    </script>
+</body>
+</html>
