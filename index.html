@@ -7,103 +7,104 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #150C0C; /* Balsamico */
-            color: #EACEAA; /* Champagne */
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0c0a09; color: #f5f5f4; }
         .font-serif { font-family: 'Playfair Display', serif; }
-        
-        /* Paleta Vintage & Luxury */
-        .bg-balsamico { background-color: #150C0C; }
-        .bg-coffee { background-color: #34150F; }
-        .bg-honey { background-color: #85431E; }
-        
-        .text-champagne { color: #EACEAA; }
-        .text-whiskey { color: #D39858; }
-        
-        .vintage-border { border-color: rgba(211, 152, 88, 0.3); }
-        .vintage-border-focus:focus { border-color: #D39858; outline: none; }
-        
-        .vintage-gradient { 
-            background: linear-gradient(135deg, #EACEAA 0%, #D39858 50%, #85431E 100%); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-        }
-        
-        .vintage-btn { 
-            background: linear-gradient(135deg, #D39858 0%, #85431E 100%); 
-            color: #150C0C;
-            font-weight: 700;
-        }
-        .vintage-btn:hover { 
-            background: linear-gradient(135deg, #EACEAA 0%, #D39858 100%); 
-        }
+        .gold-gradient { background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gold-border { border-color: rgba(191, 149, 63, 0.3); }
+        .gold-bg { background: linear-gradient(135deg, #bf953f 0%, #aa771c 100%); }
+        .gold-bg:hover { background: linear-gradient(135deg, #d4af37 0%, #c59b27 100%); }
     </style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-[#D39858] selection:text-[#150C0C]">
-    <header class="border-b vintage-border bg-[#150C0C]/90 backdrop-blur-md sticky top-0 z-50">
+<body class="min-h-screen flex flex-col selection:bg-amber-500 selection:text-black">
+    <!-- CINTILLO SUPERIOR -->
+    <div class="bg-amber-500/10 border-b gold-border text-amber-300 text-xs text-center py-2 px-4 tracking-widest uppercase">
+        ✨ Fragancias 100% originales • Atención y asesoramiento personalizado por WhatsApp ✨
+    </div>
+
+    <header class="border-b gold-border bg-stone-950/90 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3 cursor-pointer" onclick="showHome()">
-                <img src="logo.png?v=2" class="w-10 h-10 rounded-full border vintage-border object-cover shadow-md shadow-[#34150F]/50" alt="Oasys Logo">
+                <img src="logo.png?v=2" class="w-10 h-10 rounded-full border gold-border object-cover shadow-md shadow-amber-900/20" alt="Oasys Logo">
                 <div>
-                    <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-wider vintage-gradient">OASYS PARFUMS</h1>
-                    <p class="text-xs text-[#D39858] tracking-widest uppercase">Elegancia Atemporal</p>
+                    <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-wider gold-gradient">OASYS PARFUMS</h1>
+                    <p class="text-xs text-stone-400 tracking-widest uppercase">Tu refugio de fragancias exclusivas</p>
                 </div>
             </div>
             <div class="flex items-center gap-3">
-                <button onclick="openAdmin()" class="text-xs uppercase tracking-wider px-3 py-1.5 rounded border vintage-border text-[#D39858] hover:bg-[#34150F]/40 transition">⚙️ Admin</button>
+                <button onclick="openAdmin()" class="text-xs uppercase tracking-wider px-3 py-1.5 rounded border gold-border text-amber-400 hover:bg-amber-500/10 transition">⚙️ Admin</button>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full">
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-16">
         <!-- VISTA HOME -->
-        <div id="view-home" class="space-y-12">
-            <div class="text-center max-w-2xl mx-auto space-y-6 py-8">
-                <div class="inline-block p-1 rounded-full border vintage-border bg-[#34150F]/50 shadow-2xl shadow-[#34150F] mb-2">
+        <div id="view-home" class="space-y-16">
+            <div class="text-center max-w-3xl mx-auto space-y-6 py-8">
+                <div class="inline-block p-1 rounded-full border gold-border bg-stone-900/50 shadow-2xl shadow-amber-900/30 mb-2">
                     <img src="logo.png?v=2" class="w-32 h-32 rounded-full object-cover mx-auto" alt="Oasys Logo">
                 </div>
                 <div>
-                    <span class="text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-[#85431E]/20 text-[#D39858] border vintage-border">Colección Privada</span>
-                    <h2 class="font-serif text-4xl md:text-5xl font-bold mt-3 text-[#EACEAA]">Descubrí la esencia del lujo</h2>
-                    <p class="text-[#D39858]/80 text-sm md:text-base mt-2">Seleccioná una categoría para explorar nuestro catálogo exclusivo de fragancias de diseñador y árabes.</p>
+                    <span class="text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border gold-border">Alta Perfumería Internacional</span>
+                    <h2 class="font-serif text-4xl md:text-6xl font-bold mt-4">Descubrí la esencia del lujo</h2>
+                    <p class="text-stone-400 text-base md:text-lg mt-4 max-w-xl mx-auto">Explorá nuestras colecciones curadas de diseñador y árabes pensadas para dejar una huella inolvidable.</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <div onclick="selectCategory('diseñador')" class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer border vintage-border transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#85431E]/20 bg-[#34150F]">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C] via-[#150C0C]/50 to-transparent z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-40 mix-blend-luminosity" alt="Diseñador">
-                    <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end space-y-2">
-                        <span class="text-xs uppercase tracking-widest text-[#D39858] font-semibold">Categoría I</span>
-                        <h3 class="font-serif text-3xl font-bold text-[#EACEAA] group-hover:text-[#D39858] transition">Diseñador</h3>
-                        <p class="text-[#EACEAA]/70 text-sm">Clásicos modernos y elegancia internacional.</p>
+            <!-- TARJETAS DE CATEGORIAS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div onclick="selectCategory('diseñador')" class="group relative h-96 rounded-2xl overflow-hidden cursor-pointer border gold-border transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-900/30">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/50 to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-50" alt="Diseñador">
+                    <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end space-y-3">
+                        <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">Categoría I</span>
+                        <h3 class="font-serif text-3xl md:text-4xl font-bold text-white group-hover:text-amber-300 transition">Diseñador</h3>
+                        <p class="text-stone-300 text-sm">Clásicos modernos y elegancia internacional indiscutible.</p>
+                        <span class="inline-block text-xs uppercase tracking-wider text-amber-400 font-semibold pt-2">Explorar catálogo →</span>
                     </div>
                 </div>
 
-                <div onclick="selectCategory('árabe')" class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer border vintage-border transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#85431E]/20 bg-[#34150F]">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C] via-[#150C0C]/50 to-transparent z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-40 mix-blend-luminosity" alt="Árabe">
-                    <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end space-y-2">
-                        <span class="text-xs uppercase tracking-widest text-[#D39858] font-semibold">Categoría II</span>
-                        <h3 class="font-serif text-3xl font-bold text-[#EACEAA] group-hover:text-[#D39858] transition">Árabe</h3>
-                        <p class="text-[#EACEAA]/70 text-sm">Intensidad, especias, oud y duración extrema.</p>
+                <div onclick="selectCategory('árabe')" class="group relative h-96 rounded-2xl overflow-hidden cursor-pointer border gold-border transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-900/30">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/50 to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-50" alt="Árabe">
+                    <div class="absolute inset-0 z-20 p-8 flex flex-col justify-end space-y-3">
+                        <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">Categoría II</span>
+                        <h3 class="font-serif text-3xl md:text-4xl font-bold text-white group-hover:text-amber-300 transition">Árabe</h3>
+                        <p class="text-stone-300 text-sm">Intensidad, especias, notas amaderadas de oud y duración extrema.</p>
+                        <span class="inline-block text-xs uppercase tracking-wider text-amber-400 font-semibold pt-2">Explorar catálogo →</span>
                     </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN DE BENEFICIOS / VALORES -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto pt-8">
+                <div class="bg-stone-900/60 border gold-border rounded-xl p-6 text-center space-y-3">
+                    <div class="text-3xl">💎</div>
+                    <h4 class="font-serif font-bold text-lg text-white">100% Originales</h4>
+                    <p class="text-stone-400 text-xs">Garantía de autenticidad en cada botella y decant ofrecido.</p>
+                </div>
+                <div class="bg-stone-900/60 border gold-border rounded-xl p-6 text-center space-y-3">
+                    <div class="text-3xl">📦</div>
+                    <h4 class="font-serif font-bold text-lg text-white">Envíos Seguros</h4>
+                    <p class="text-stone-400 text-xs">Protección máxima en los empaques para que tu perfume llegue impecable.</p>
+                </div>
+                <div class="bg-stone-900/60 border gold-border rounded-xl p-6 text-center space-y-3">
+                    <div class="text-3xl">💬</div>
+                    <h4 class="font-serif font-bold text-lg text-white">Asesoramiento</h4>
+                    <p class="text-stone-400 text-xs">Te ayudamos a elegir la fragancia ideal según tus gustos y ocasiones.</p>
                 </div>
             </div>
         </div>
 
         <!-- VISTA CATALOGO -->
         <div id="view-catalog" class="hidden space-y-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b vintage-border pb-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b gold-border pb-6">
                 <div>
-                    <button onclick="showHome()" class="text-xs text-[#D39858] hover:underline mb-2 inline-block">← Volver a categorías</button>
-                    <h2 id="catalog-title" class="font-serif text-3xl font-bold capitalize text-[#EACEAA]">Catálogo</h2>
+                    <button onclick="showHome()" class="text-xs text-amber-400 hover:underline mb-2 inline-block">← Volver a categorías</button>
+                    <h2 id="catalog-title" class="font-serif text-3xl font-bold capitalize text-white">Catálogo</h2>
                 </div>
                 <div class="flex flex-wrap gap-3 w-full md:w-auto">
-                    <input type="text" id="search-input" oninput="filterProducts()" placeholder="Buscar perfume o marca..." class="bg-[#34150F] border vintage-border rounded-lg px-4 py-2 text-sm text-[#EACEAA] placeholder-[#EACEAA]/40 vintage-border-focus w-full md:w-64">
-                    <select id="filter-gender" onchange="filterProducts()" class="bg-[#34150F] border vintage-border rounded-lg px-4 py-2 text-sm text-[#EACEAA] vintage-border-focus">
+                    <input type="text" id="search-input" oninput="filterProducts()" placeholder="Buscar perfume o marca..." class="bg-stone-900 border gold-border rounded-lg px-4 py-2 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-amber-400 w-full md:w-64">
+                    <select id="filter-gender" onchange="filterProducts()" class="bg-stone-900 border gold-border rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-amber-400">
                         <option value="todos">Todos los géneros</option>
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
@@ -118,35 +119,42 @@
         </div>
     </main>
 
+    <!-- FOOTER PROFESIONAL -->
+    <footer class="border-t gold-border bg-stone-950 py-8 mt-16 text-center text-xs text-stone-400 space-y-2">
+        <p class="font-serif text-amber-400 text-sm tracking-wider">OASYS PARFUMS</p>
+        <p>Fragancias exclusivas y alta perfumería.</p>
+        <p class="text-stone-600 pt-2">© 2026 Todos los derechos reservados.</p>
+    </footer>
+
     <!-- MODAL FICHA OLFATIVA -->
-    <div id="modal-product" class="fixed inset-0 z-50 bg-[#150C0C]/85 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-[#34150F] border vintage-border rounded-2xl max-w-lg w-full p-6 relative space-y-6 max-h-[90vh] overflow-y-auto shadow-2xl shadow-[#150C0C]">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-[#EACEAA]/60 hover:text-[#EACEAA] text-xl">✕</button>
+    <div id="modal-product" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-stone-900 border gold-border rounded-2xl max-w-lg w-full p-6 relative space-y-6 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-stone-400 hover:text-white text-xl">✕</button>
             <div id="modal-content"></div>
         </div>
     </div>
 
     <!-- MODAL ADMIN -->
-    <div id="modal-admin" class="fixed inset-0 z-50 bg-[#150C0C]/85 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-[#34150F] border vintage-border rounded-2xl max-w-lg w-full p-6 relative space-y-6 max-h-[90vh] overflow-y-auto shadow-2xl shadow-[#150C0C]">
-            <div class="flex justify-between items-center border-b vintage-border pb-4">
-                <h3 class="font-serif text-xl font-bold text-[#D39858]">Gestión de Perfumes</h3>
-                <button onclick="closeAdmin()" class="text-[#EACEAA]/60 hover:text-[#EACEAA] text-xl">✕</button>
+    <div id="modal-admin" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-stone-900 border gold-border rounded-2xl max-w-lg w-full p-6 relative space-y-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b gold-border pb-4">
+                <h3 class="font-serif text-xl font-bold text-amber-400">Gestión de Perfumes</h3>
+                <button onclick="closeAdmin()" class="text-stone-400 hover:text-white text-xl">✕</button>
             </div>
             <form id="admin-form" onsubmit="saveProduct(event)" class="space-y-4">
                 <input type="hidden" id="edit-id">
                 <div>
-                    <label class="block text-xs uppercase tracking-wider text-[#D39858] mb-1">Nombre</label>
-                    <input type="text" id="form-name" required class="w-full bg-[#150C0C] border vintage-border rounded-lg p-2.5 text-sm text-[#EACEAA] vintage-border-focus">
+                    <label class="block text-xs uppercase tracking-wider text-stone-400 mb-1">Nombre</label>
+                    <input type="text" id="form-name" required class="w-full bg-stone-950 border gold-border rounded-lg p-2.5 text-sm text-white">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs uppercase tracking-wider text-[#D39858] mb-1">Marca</label>
-                        <input type="text" id="form-brand" required class="w-full bg-[#150C0C] border vintage-border rounded-lg p-2.5 text-sm text-[#EACEAA] vintage-border-focus">
+                        <label class="block text-xs uppercase tracking-wider text-stone-400 mb-1">Marca</label>
+                        <input type="text" id="form-brand" required class="w-full bg-stone-950 border gold-border rounded-lg p-2.5 text-sm text-white">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase tracking-wider text-[#D39858] mb-1">Categoría</label>
-                        <select id="form-category" class="w-full bg-[#150C0C] border vintage-border rounded-lg p-2.5 text-sm text-[#EACEAA] vintage-border-focus">
+                        <label class="block text-xs uppercase tracking-wider text-stone-400 mb-1">Categoría</label>
+                        <select id="form-category" class="w-full bg-stone-950 border gold-border rounded-lg p-2.5 text-sm text-white">
                             <option value="diseñador">Diseñador</option>
                             <option value="árabe">Árabe</option>
                         </select>
@@ -154,31 +162,31 @@
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs uppercase tracking-wider text-[#D39858] mb-1">Género</label>
-                        <select id="form-gender" class="w-full bg-[#150C0C] border vintage-border rounded-lg p-2.5 text-sm text-[#EACEAA] vintage-border-focus">
+                        <label class="block text-xs uppercase tracking-wider text-stone-400 mb-1">Género</label>
+                        <select id="form-gender" class="w-full bg-stone-950 border gold-border rounded-lg p-2.5 text-sm text-white">
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
                             <option value="Unisex">Unisex</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs uppercase tracking-wider text-[#D39858] mb-1">Volumen y Tipo</label>
-                        <input type="text" id="form-vol" placeholder="100ml EDP" required class="w-full bg-[#150C0C] border vintage-border rounded-lg p-2.5 text-sm text-[#EACEAA] vintage-border-focus">
+                        <label class="block text-xs uppercase tracking-wider text-stone-400 mb-1">Volumen y Tipo</label>
+                        <input type="text" id="form-vol" placeholder="100ml EDP" required class="w-full bg-stone-950 border gold-border rounded-lg p-2.5 text-sm text-white">
                     </div>
                 </div>
-                <button type="submit" class="w-full py-3 rounded-lg vintage-btn uppercase text-xs tracking-wider transition">Guardar Perfume</button>
+                <button type="submit" class="w-full py-3 rounded-lg gold-bg text-black font-bold uppercase text-xs tracking-wider transition">Guardar Perfume</button>
             </form>
-            <div class="border-t vintage-border pt-4">
-                <h4 class="text-xs uppercase tracking-wider text-[#D39858] mb-3">Lista actual</h4>
+            <div class="border-t gold-border pt-4">
+                <h4 class="text-xs uppercase tracking-wider text-stone-400 mb-3">Lista actual</h4>
                 <div id="admin-list" class="space-y-2 max-h-40 overflow-y-auto"></div>
             </div>
         </div>
     </div>
 
     <script>
-        if (localStorage.getItem('oasis_version') !== 'v12') {
+        if (localStorage.getItem('oasis_version') !== 'v13') {
             localStorage.removeItem('oasis_products');
-            localStorage.setItem('oasis_version', 'v12');
+            localStorage.setItem('oasis_version', 'v13');
         }
 
         let initialProducts = [
@@ -239,21 +247,21 @@
             });
 
             if (filtered.length === 0) {
-                grid.innerHTML = `<p class="col-span-full text-center text-[#EACEAA]/50 py-12">No se encontraron perfumes con estos filtros.</p>`;
+                grid.innerHTML = `<p class="col-span-full text-center text-stone-500 py-12">No se encontraron perfumes con estos filtros.</p>`;
                 return;
             }
 
             grid.innerHTML = filtered.map(p => `
-                <div class="bg-[#34150F] border vintage-border rounded-xl p-6 flex flex-col justify-between space-y-4 hover:border-[#D39858] transition shadow-lg">
+                <div class="bg-stone-900 border gold-border rounded-xl p-6 flex flex-col justify-between space-y-4 hover:border-amber-400 transition shadow-lg">
                     <div class="space-y-1">
                         <div class="flex justify-between items-start">
-                            <span class="text-xs uppercase tracking-widest text-[#D39858] font-semibold">${p.brand}</span>
-                            <span class="text-xs px-2 py-0.5 rounded bg-[#150C0C] text-[#EACEAA] border vintage-border">${p.gender}</span>
+                            <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">${p.brand}</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-stone-800 text-stone-300 border gold-border">${p.gender}</span>
                         </div>
-                        <h3 class="font-serif text-xl font-bold text-[#EACEAA]">${p.name}</h3>
-                        <p class="text-xs text-[#EACEAA]/60">${p.vol}</p>
+                        <h3 class="font-serif text-xl font-bold text-white">${p.name}</h3>
+                        <p class="text-xs text-stone-400">${p.vol}</p>
                     </div>
-                    <button onclick="openModal(${p.id})" class="w-full py-2.5 rounded-lg border vintage-border text-[#D39858] hover:bg-[#D39858] hover:text-[#150C0C] font-semibold text-xs uppercase tracking-wider transition">Ver Ficha Olfativa</button>
+                    <button onclick="openModal(${p.id})" class="w-full py-2.5 rounded-lg border gold-border text-amber-400 hover:bg-amber-500 hover:text-black font-semibold text-xs uppercase tracking-wider transition">Ver Ficha Olfativa</button>
                 </div>
             `).join('');
         }
@@ -265,26 +273,26 @@
             const content = document.getElementById('modal-content');
             content.innerHTML = `
                 <div class="space-y-4">
-                    <div class="border-b vintage-border pb-3">
-                        <span class="text-xs uppercase tracking-widest text-[#D39858]">${p.brand} • ${p.gender}</span>
-                        <h3 class="font-serif text-2xl font-bold text-[#EACEAA]">${p.name}</h3>
-                        <p class="text-xs text-[#EACEAA]/60">${p.vol}</p>
+                    <div class="border-b gold-border pb-3">
+                        <span class="text-xs uppercase tracking-widest text-amber-400">${p.brand} • ${p.gender}</span>
+                        <h3 class="font-serif text-2xl font-bold text-white">${p.name}</h3>
+                        <p class="text-xs text-stone-400">${p.vol}</p>
                     </div>
                     <div class="space-y-2">
-                        <h4 class="text-xs uppercase tracking-wider text-[#D39858] font-semibold">Pirámide de Notas</h4>
-                        <p class="text-sm text-[#EACEAA]/90 bg-[#150C0C] p-3 rounded-lg border vintage-border">${p.notes}</p>
+                        <h4 class="text-xs uppercase tracking-wider text-amber-400 font-semibold">Pirámide de Notas</h4>
+                        <p class="text-sm text-stone-200 bg-stone-950 p-3 rounded-lg border gold-border">${p.notes}</p>
                     </div>
                     <div class="grid grid-cols-2 gap-4 pt-2">
-                        <div class="bg-[#150C0C] p-3 rounded-lg border vintage-border">
-                            <span class="block text-xs text-[#EACEAA]/60 uppercase">Duración</span>
-                            <span class="font-bold text-[#D39858]">${p.duration}</span>
+                        <div class="bg-stone-950 p-3 rounded-lg border gold-border">
+                            <span class="block text-xs text-stone-400 uppercase">Duración</span>
+                            <span class="font-bold text-amber-400">${p.duration}</span>
                         </div>
-                        <div class="bg-[#150C0C] p-3 rounded-lg border vintage-border">
-                            <span class="block text-xs text-[#EACEAA]/60 uppercase">Proyección</span>
-                            <span class="font-bold text-[#D39858]">${p.sillage}</span>
+                        <div class="bg-stone-950 p-3 rounded-lg border gold-border">
+                            <span class="block text-xs text-stone-400 uppercase">Proyección</span>
+                            <span class="font-bold text-amber-400">${p.sillage}</span>
                         </div>
                     </div>
-                    <a href="https://wa.me/?text=Hola!%20Quiero%20consultar%20por%20el%20perfume%20${encodeURIComponent(p.brand + ' ' + p.name + ' ' + p.vol)}" target="_blank" class="block w-full text-center py-3 rounded-lg vintage-btn uppercase text-xs tracking-wider transition shadow-md">Consultar por WhatsApp</a>
+                    <a href="https://wa.me/?text=Hola!%20Quiero%20consultar%20por%20el%20perfume%20${encodeURIComponent(p.brand + ' ' + p.name + ' ' + p.vol)}" target="_blank" class="block w-full text-center py-3 rounded-lg gold-bg text-black font-bold uppercase text-xs tracking-wider transition">Consultar por WhatsApp</a>
                 </div>
             `;
             document.getElementById('modal-product').classList.remove('hidden');
@@ -310,7 +318,7 @@
         function renderAdminList() {
             const list = document.getElementById('admin-list');
             list.innerHTML = products.map(p => `
-                <div class="flex justify-between items-center bg-[#150C0C] p-2 rounded border vintage-border text-xs text-[#EACEAA]">
+                <div class="flex justify-between items-center bg-stone-950 p-2 rounded border gold-border text-xs text-stone-200">
                     <span class="truncate pr-2">${p.brand} - ${p.name}</span>
                     <button onclick="deleteProduct(${p.id})" class="text-red-400 hover:text-red-300 px-2 py-1">Eliminar</button>
                 </div>
